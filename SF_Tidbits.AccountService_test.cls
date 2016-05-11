@@ -15,8 +15,8 @@ public class AccountService_test{
         // Verify only one account was created (process builder and triggers could be creating additional accounts)
         System.assertEquals(1, [select id from Account].size(), 'Check process automation logic for Accounts, possible insert recursion');
 
-        // Redundant verification that returned account was in fact created.
-        System.assertEquals(newAccount.Id, [select id from Account][0].Id, 'You have stepped into... THE TWILIGHT ZONE');
+        // Ensure account name is as expected
+        System.assertEquals(validArg , [select id from Account][0].Name, 'Unexpected account name');
     }
 
     static testmethod void insertNewAccount_negative_1(){
